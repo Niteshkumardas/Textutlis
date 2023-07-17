@@ -3,6 +3,15 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Textform from './components/Textform';
 import Alert from './components/Alert';
+import About from './components/About';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Routes,
+  Route,
+  Link,
+  BrowserRouter
+} from "react-router-dom";
 
 function App() {
   const [mode, setMode]=useState("light");
@@ -34,11 +43,16 @@ function App() {
 
   return (
     <>
-    <Navbar title="Home" aboutText="About" mode={mode} toggleMode={toggleMode}/>
+    <BrowserRouter>
+    <Navbar title="TextUtlis" home="Home" aboutText="About" mode={mode} toggleMode={toggleMode}/>
     <Alert alert={alert}/>
     <div className="container">
-    <Textform heading="Enter the text to analyze" mode={mode}/>
+    <Routes>
+      <Route path="/" element={<Textform heading="Enter the text to analyze" mode={mode} />} />
+      <Route path="/About" element={<About />} />
+    </Routes>
     </div>
+    </BrowserRouter>
     </>
     
   );
